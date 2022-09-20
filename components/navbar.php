@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
 
                 <?php
                 if (isset($_SESSION['user'])) {
@@ -23,9 +23,9 @@
                                     <a class="nav-link" href="/users">Users</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="new-container">new Container</a>
+                                    <a class="nav-link" href="new-container">Add New Container</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item me-auto">
                                     <a class="nav-link" href="/logout">Logout</a>
                                 </li>
                             <?php
@@ -35,10 +35,24 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/travels">My Travels</a>
                                 </li>
+                                <li class="nav-item me-auto">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
+                            <?php
+                                break;
+                            case 3:
+                            ?>
+
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/new-travel">new Travel</a>
+                                    <a class="nav-link" href="/new-travel">Add New Travel</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="/travels">Travels</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/containers">Containers</a>
+                                </li>
+                                <li class="nav-item me-auto">
                                     <a class="nav-link" href="/logout">Logout</a>
                                 </li>
                             <?php
@@ -53,8 +67,28 @@
                                 </li>
                         <?php
                         }
-                    } else {
+
                         ?>
+                        <li class=" d-flex ">
+                            <a class="nav-link text-danger" href="javascript:void(0)">
+                                User :
+                                <?php
+                                echo $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name']
+                                ?>
+                            </a>
+                        </li>
+
+                        <li class=" d-flex ">
+                            <a class="nav-link text-danger" href="javascript:void(0)">
+                                Role :
+                                <?php
+                                echo isset($_SESSION['role_name']) ? $_SESSION['role_name'] : ""
+                                ?>
+                            </a>
+                        </li>
+                    <?php
+                    } else {
+                    ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/login">Login</a>
                         </li>

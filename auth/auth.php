@@ -13,13 +13,9 @@ if (isset($_SESSION['user'])) {
         switch ($_SESSION['user']['role_id']) {
             case 1:
                 if (count($uri) > 1) {
-
                     switch (explode('?', $uri[1])[0]) {
                         case 'containers':
                             require_once('./admin/containers.php');
-                            break;
-                        case 'travels':
-                            require_once('./admin/travels.php');
                             break;
                         case 'users':
                             require_once('./admin/users.php');
@@ -30,6 +26,9 @@ if (isset($_SESSION['user'])) {
                         case 'edit-container':
                             require_once('./admin/edit-container.php');
                             break;
+                        default:
+                            require_once('./admin/travels.php');
+                            break;
                     }
                     exit;
                 }
@@ -37,20 +36,21 @@ if (isset($_SESSION['user'])) {
                 require_once('./admin/travels.php');
                 break;
             case 2:
+                require_once('./client/travels.php');
+                exit;
+            case 3:
                 if (count($uri) > 1) {
-                    switch ($uri[1]) {
-                        case 'travels':
-                            require_once('./client/travels.php');
-                            break;
+                    switch (explode('?', $uri[1])[0]) {
+                        case  'containers':
+                            require_once('./employee/containers.php');
+                            exit;
                         case 'new-travel':
-                            require_once('./client/create-travel.php');
-                            break;
+                            require_once('./employee/create-travel.php');
+                            exit;
                     }
-                } else {
-                    require_once('./client/travels.php');
-                    exit;
                 }
-                break;
+                require_once('./employee/travels.php');
+                exit;
         }
 } elseif (count($uri) > 1) {
     switch ($uri[1]) {

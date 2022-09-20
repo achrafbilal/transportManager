@@ -7,6 +7,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (count($result) > 0) {
         $_SESSION["user"] = $result[0];
+        $stmt = $pdo->query('select role_name from roles where id = ' . $result[0]['role_id'] . ';');
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['role_name'] = $result[0]['role_name'];
         header('Location: /travels');
         die;
     } else {

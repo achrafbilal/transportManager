@@ -3,6 +3,7 @@ require_once('./db/db.php');
 $stmt = $pdo->query('select * from containers ;');
 $containers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 ?>
 <div class="container-fluid bg-dark">
     <div class="row m-5">
@@ -22,6 +23,7 @@ $containers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th scope="col" class="text-center">Label</th>
                         <th scope="col" class="text-center">Max Volume</th>
                         <th scope="col" class="text-center">State</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -30,19 +32,21 @@ $containers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $i = 1;
                     foreach ($containers as $container) {
                     ?>
-                        <tr>
-                            <th scope="row" class="text-center">
+                        <form action="" method="post">
+                            <tr>
+                                <th scope="row" class="text-center">
 
-                                <form action="/edit-container" method="get">
-                                    <input type="number" value="<?php echo $container['id'] ?>" name="id" style="display: none;" readonly>
-                                    <button type="submit" class="btn btn-primary"><?php echo $i ?></button>
-                                </form>
-                            </th>
-                            <td class="text-center"><?php echo $container['label'] ?></td>
-                            <td class="text-center"><?php echo $container['max_volume'] ?></td>
-                            <td class="text-center"><?php echo $container['free'] ? "" : "Not" ?> Available</td>
+                                    <form action="/edit-container" method="get">
+                                        <input type="number" value="<?php echo $container['id'] ?>" name="id" style="display: none;" readonly>
+                                        <button type="submit" class="btn btn-primary"><?php echo $i ?></button>
+                                    </form>
+                                </th>
+                                <td class="text-center"><?php echo $container['label'] ?></td>
+                                <td class="text-center"><?php echo $container['max_volume'] ?></td>
+                                <td class="text-center"><?php echo $container['free'] ? "" : "Not" ?> Available</td>
 
-                        </tr>
+                            </tr>
+                        </form>
                     <?php
                         $i++;
                     }

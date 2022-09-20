@@ -4,7 +4,7 @@ $stmt = $pdo->query('select u.id,u.first_name,u.last_name,u.email,r.role_name fr
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<div class="container-fluid">
+<div class="container-fluid bg-dark">
     <div class="row m-5">
         <div class="col-12 d-flex justify-content-center align-items-center text-center text-light">
             <h1>
@@ -16,7 +16,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row mt-5">
 
         <div class="col-md-12 d-flex justify-content-center align-items-center">
-            <table class="table table-dark table-hover rounded">
+            <table class="table table-light table-hover rounded">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">#</th>
@@ -29,12 +29,13 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
 
                     <?php
+                    $i = 1;
                     foreach ($users as $user) {
                     ?>
                         <tr>
                             <th scope="row" class="text-center">
                                 <!-- /show-user/<?php echo $user['id'] ?> -->
-                                <a href="javascript:void(0)"><?php echo $user['id'] ?></a>
+                                <a href="javascript:void(0)"><?php echo $i ?></a>
                             </th>
                             <td class="text-center"><?php echo $user['first_name'] ?></td>
                             <td class="text-center"><?php echo $user['last_name'] ?></td>
@@ -43,6 +44,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         </tr>
                     <?php
+                        $i++;
                     }
                     ?>
 
