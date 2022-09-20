@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['email']) && isset($_POST['password'])) {
-    require_once('./db.php');
+    require_once('./db/db.php');
     $email = $_POST['email'];
     $password = $_POST['password'];
     $stmt = $pdo->query("select * from users where email = '$email' and password = '$password' ;");

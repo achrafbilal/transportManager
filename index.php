@@ -14,7 +14,7 @@
 
     <?php
 
-    require_once('./auth/auth.php');
+    require_once('./app/auth.php');
 
     ?>
 
@@ -24,6 +24,7 @@
     <script>
         $(document).ready(() => {
             console.log('ready')
+            // php -S localhost:8000
         })
     </script>
 </body>
